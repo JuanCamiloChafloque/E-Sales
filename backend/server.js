@@ -8,6 +8,7 @@ dotenv.config();
 
 //Init Routes
 const users = require("./routes/users");
+const categories = require("./routes/categories");
 
 //Database init
 db();
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes asignation
 app.use("/api/v1/users", users);
+app.use("/api/v1/categories", categories);
 
 //Error handler middleware
 app.use(errorMiddleware);

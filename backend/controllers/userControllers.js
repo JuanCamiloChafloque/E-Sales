@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const sendToken = require("../utils/jwtToken");
 
 //@desc     Register a user
-//@route    /api/v1/users/register
+//@route    POST /api/v1/users/register
 //@access   public
 exports.register = catchAsyncErrors(async (req, res, next) => {
   const { name, lastName, email, password, role } = req.body;
@@ -35,7 +35,7 @@ exports.register = catchAsyncErrors(async (req, res, next) => {
 });
 
 //@desc     Login a user
-//@route    /api/v1/users/login
+//@route    POST /api/v1/users/login
 //@access   public
 exports.login = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
@@ -46,7 +46,7 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({ email: email });
   if (!user) {
     return next(
-      new ErrorHandler("User with email " + email + " does not exist", 400)
+      new ErrorHandler("User with email " + email + " does not exist", 404)
     );
   }
 
