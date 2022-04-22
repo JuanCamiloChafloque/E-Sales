@@ -11,13 +11,17 @@ const SaleSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "user",
     },
-    product: {
-      type: Schema.Types.ObjectId,
-      ref: "product",
-    },
-    quantity: {
-      type: Number,
-    },
+    details: [
+      {
+        product: {
+          type: Schema.Types.ObjectId,
+          ref: "product",
+        },
+        quantity: {
+          type: Number,
+        },
+      },
+    ],
     date: {
       type: Date,
       default: Date.now,

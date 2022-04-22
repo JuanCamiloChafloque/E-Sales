@@ -12,6 +12,8 @@ dotenv.config();
 const users = require("./routes/users");
 const categories = require("./routes/categories");
 const products = require("./routes/products");
+const clients = require("./routes/clients");
+const sales = require("./routes/sales");
 
 //Database init
 db();
@@ -56,6 +58,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/v1/users", users);
 app.use("/api/v1/categories", categories);
 app.use("/api/v1/products", products);
+app.use("/api/v1/clients", clients);
+app.use("/api/v1/sales", sales);
 
 //Error handler middleware
 app.use(errorMiddleware);

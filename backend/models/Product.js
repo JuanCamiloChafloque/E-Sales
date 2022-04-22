@@ -16,11 +16,11 @@ const ProductSchema = new Schema(
       required: [true, "Product image is required"],
     },
     purchaseCost: {
-      type: String,
+      type: Number,
       required: [true, "Product purchase cost is required"],
     },
     saleCost: {
-      type: String,
+      type: Number,
       required: [true, "Product sale cost is required"],
     },
     stock: {

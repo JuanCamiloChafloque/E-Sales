@@ -34,7 +34,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   const { keyword } = req.query;
 
-  let products = await Product.find({});
+  let products = await Product.find({}).populate("category");
 
   if (keyword) {
     const exp = new RegExp(keyword, "i");
