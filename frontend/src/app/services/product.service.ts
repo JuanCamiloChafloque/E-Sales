@@ -26,7 +26,7 @@ export class ProductService {
     return this.http.get(this.url + 'api/v1/categories');
   }
 
-  createProduct(product: any) {
+  createProduct(product: any): Observable<any> {
     const fd = new FormData();
     fd.append('title', product.title);
     fd.append('description', product.description);
@@ -40,7 +40,7 @@ export class ProductService {
     return this.http.post(this.url + 'api/v1/products', fd);
   }
 
-  updateProductById(product: any, id: String) {
+  updateProductById(product: any, id: String): Observable<any> {
     const fd = new FormData();
     fd.append('title', product.title);
     fd.append('description', product.description);
@@ -52,6 +52,10 @@ export class ProductService {
     fd.append('points', product.points);
 
     return this.http.put(this.url + 'api/v1/products/' + id, fd);
+  }
+
+  deleteProductById(id: String): Observable<any> {
+    return this.http.delete(this.url + 'api/v1/products/' + id);
   }
 
   createCategory(title: String, description: String) {

@@ -3,6 +3,7 @@ import { GLOBAL } from '../../../services/GLOBAL';
 import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 declare var jQuery: any;
 declare var $: any;
@@ -82,5 +83,44 @@ export class ProductsListComponent implements OnInit {
           },
         });
     }
+  }
+
+  deleteProduct(id: String) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.deleteProductById(id).subscribe({
+          next: () => {
+            this.productService.getAllProducts('').subscribe({
+              next: (result) => {
+                this.products = result.products;
+                Swal.fire(
+                  'Deleted!',
+                  'Product deleted successfully.',
+                  'success'
+                );
+              },
+              error: (err) => {
+                this.error = err.error.message;
+              },
+            });
+          },
+          error: (err) => {
+            Swal.fire(
+              'The product could not be deleted!',
+              err.error.message,
+              'error'
+            );
+          },
+        });
+      }
+    });
   }
 }
