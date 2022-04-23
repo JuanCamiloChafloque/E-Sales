@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const path = require("path");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const fileHelper = require("../utils/file");
@@ -58,6 +59,22 @@ exports.getProductById = catchAsyncErrors(async (req, res, next) => {
   }
 
   res.status(200).json({ success: true, product: product });
+});
+
+//@desc     Get a product image by Id
+//@route    GET /api/v1/products/:id/img
+//@access   public
+exports.getProductImage = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const product = await Product.findById(id);
+
+  if (!product) {
+    return next(
+      new ErrorHandler("The product with id " + id + " does not exist", 404)
+    );
+  }
+
+  res.status(200).sendFile(path.resolve(product.image));
 });
 
 //@desc     Update a product by Id

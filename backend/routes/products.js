@@ -6,6 +6,7 @@ const {
   createProduct,
   getAllProducts,
   getProductById,
+  getProductImage,
   updateProductById,
   updateProductStock,
   deleteProductById,
@@ -19,5 +20,6 @@ router
   .delete(deleteProductById);
 
 router.route("/:id/stock").put(updateProductStock);
+router.route("/:id/img").get(getProductImage);
 
 module.exports = router;
