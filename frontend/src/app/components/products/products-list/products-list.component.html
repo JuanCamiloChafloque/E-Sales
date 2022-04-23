@@ -183,7 +183,12 @@
                     <th>Options</th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let item of products">
+                <tbody
+                  *ngFor="
+                    let item of products
+                      | paginate: { itemsPerPage: 5, currentPage: p }
+                  "
+                >
                   <td>
                     <img
                       [src]="url + 'api/v1/products/' + item._id + '/img'"
@@ -221,7 +226,11 @@
               </table>
             </div>
           </div>
-          <div class="col-12 col-xl-12">PAGINACIÓN AQUÍ</div>
+          <div class="col-12 col-xl-12">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
         </div>
 
         <!--MODAL AGREGAR CATEGORIA-->

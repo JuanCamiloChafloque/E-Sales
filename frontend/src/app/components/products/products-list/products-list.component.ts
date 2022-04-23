@@ -21,6 +21,7 @@ export class ProductsListComponent implements OnInit {
   public success: String = '';
   public title: String = '';
   public description: String = '';
+  public p: number = 1;
 
   constructor(private productService: ProductService, private router: Router) {
     this.url = GLOBAL.url;

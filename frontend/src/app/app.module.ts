@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -12,8 +13,22 @@ import { ProductCreateComponent } from './components/products/product-create/pro
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent, ProductsListComponent, SidebarComponent, ProductCreateComponent, ProductEditComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    ProductsListComponent,
+    SidebarComponent,
+    ProductCreateComponent,
+    ProductEditComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgxPaginationModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
