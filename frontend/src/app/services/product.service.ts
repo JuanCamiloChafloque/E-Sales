@@ -44,7 +44,6 @@ export class ProductService {
     const fd = new FormData();
     fd.append('title', product.title);
     fd.append('description', product.description);
-    fd.append('stock', product.stock);
     fd.append('image', product.image);
     fd.append('purchaseCost', product.purchaseCost);
     fd.append('saleCost', product.saleCost);
@@ -56,6 +55,15 @@ export class ProductService {
 
   deleteProductById(id: String): Observable<any> {
     return this.http.delete(this.url + 'api/v1/products/' + id);
+  }
+
+  updateProductStock(stock: number, id: String): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.put(
+      this.url + 'api/v1/products/' + id + '/stock',
+      { stock },
+      { headers: headers }
+    );
   }
 
   createCategory(title: String, description: String) {

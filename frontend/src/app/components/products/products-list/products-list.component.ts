@@ -23,6 +23,8 @@ export class ProductsListComponent implements OnInit {
   public title: String = '';
   public description: String = '';
   public p: number = 1;
+  public stock!: number;
+  public stockId!: String;
 
   constructor(private productService: ProductService, private router: Router) {
     this.url = GLOBAL.url;
@@ -122,5 +124,33 @@ export class ProductsListComponent implements OnInit {
         });
       }
     });
+  }
+
+  updateDropdownStockId(id: String) {
+    this.stockId = id;
+  }
+
+  onIncreaseStock(stockForm: NgForm) {
+    if (stockForm.valid) {
+      this.productService
+        .updateProductStock(this.stock, this.stockId)
+        .subscribe({
+          next: () => {
+            this.productService.getAllProducts('').subscribe({
+              next: (result) => {
+                this.products = result.products;
+                $('.modal').modal('hide');
+                this.success = 'Stock increased successfully for the product';
+              },
+              error: (err) => {
+                this.error = err.error.message;
+              },
+            });
+          },
+          error: (err) => {
+            this.error = err.error.message;
+          },
+        });
+    }
   }
 }

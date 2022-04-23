@@ -59,7 +59,6 @@ export class ProductEditComponent implements OnInit {
       const product = {
         title: productForm.value.title,
         description: productForm.value.description,
-        stock: productForm.value.stock,
         category: productForm.value.category,
         points: productForm.value.points,
         saleCost: productForm.value.saleCost,

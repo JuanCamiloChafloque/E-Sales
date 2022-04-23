@@ -22,7 +22,7 @@
         <li class="sidebar-item active">
           <a href="#dashboards" data-toggle="collapse" class="sidebar-link">
             <i class="align-middle mr-2 fas fa-fw fa-home"></i>
-            <span class="align-middle">Dashboards</span>
+            <span class="align-middle">Dashboard</span>
           </a>
           <ul
             id="dashboards"
@@ -45,10 +45,10 @@
           </ul>
         </li>
 
-        <li class="sidebar-item">
-          <a class="sidebar-link" href="documentation.html">
-            <i class="align-middle mr-2 fas fa-fw fa-book"></i>
-            <span class="align-middle">Getting Started</span>
+        <li class="sidebar-item" routerLinkActive="sidebar-item active">
+          <a class="sidebar-link" [routerLink]="['/products']">
+            <i class="align-middle mr-2 fas fa-box-open"></i>
+            <span class="align-middle">Products</span>
           </a>
         </li>
       </ul>
