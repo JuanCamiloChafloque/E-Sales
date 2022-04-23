@@ -56,6 +56,16 @@
             List of products that are monitored and tracked by
             <strong>E-Sales</strong> and are sold to clients and customers
           </p>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <a>Products</a>
+              </li>
+            </ol>
+          </nav>
         </div>
 
         <div class="row">
@@ -126,7 +136,11 @@
                           transform: translate3d(0px, 31px, 0px);
                         "
                       >
-                        <a class="dropdown-item" href="#">Register Product</a>
+                        <a
+                          class="dropdown-item"
+                          [routerLink]="['/product/register']"
+                          >Register Product</a
+                        >
                         <a class="dropdown-item">List of Categories</a>
                         <a class="dropdown-item">Register Category</a>
                       </div>
