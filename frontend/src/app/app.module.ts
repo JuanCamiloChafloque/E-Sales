@@ -9,9 +9,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductsListComponent } from './components/products/products-list/products-list.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProductCreateComponent } from './components/products/product-create/product-create.component';
+import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent, ProductsListComponent, SidebarComponent, ProductCreateComponent],
+  declarations: [AppComponent, LoginComponent, DashboardComponent, ProductsListComponent, SidebarComponent, ProductCreateComponent, ProductEditComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
