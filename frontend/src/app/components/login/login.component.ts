@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '../../models/User';
 
@@ -10,8 +11,9 @@ import { User } from '../../models/User';
 })
 export class LoginComponent implements OnInit {
   public user: User;
+  public errorMessage: String = '';
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.user = new User('', '', '', '', '', '');
   }
 
@@ -19,14 +21,16 @@ export class LoginComponent implements OnInit {
 
   login(loginForm: NgForm) {
     if (loginForm.valid) {
-      this.userService.login(this.user.email, this.user.password).subscribe(
-        (result) => {
-          console.log(result);
+      this.errorMessage = '';
+      this.userService.login(this.user.email, this.user.password).subscribe({
+        next: (result) => {
+          localStorage.setItem('user', JSON.stringify(result.user));
+          this.router.navigate(['dashboard']);
         },
-        (error) => {
-          console.log(error);
-        }
-      );
+        error: (err) => {
+          this.errorMessage = err.error.message;
+        },
+      });
     }
   }
 }

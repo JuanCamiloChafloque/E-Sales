@@ -11,19 +11,17 @@ export class UserService {
   public url;
   public user;
 
-  constructor(private _http: HttpClient) {
+  constructor(private http: HttpClient) {
     this.url = GLOBAL.url;
     this.user = new User('', '', '', '', '', '');
   }
 
   login(email: String, password: String): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.post(
+    return this.http.post(
       this.url + 'api/v1/users/login',
       { email, password },
       { headers: headers }
     );
   }
-
-  getUser() {}
 }
