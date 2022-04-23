@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GLOBAL } from './GLOBAL';
+import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
@@ -51,5 +52,17 @@ export class ProductService {
     fd.append('points', product.points);
 
     return this.http.put(this.url + 'api/v1/products/' + id, fd);
+  }
+
+  createCategory(title: String, description: String) {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(
+      this.url + 'api/v1/categories',
+      {
+        title,
+        description,
+      },
+      { headers: headers }
+    );
   }
 }
