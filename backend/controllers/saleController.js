@@ -36,11 +36,30 @@ exports.registerSale = catchAsyncErrors(async (req, res, next) => {
 //@access   public
 exports.getSaleById = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
-  const sale = await Sale.findById(id).populate("details.product");
+  const sale = await Sale.findById(id).populate([
+    "details.product",
+    "client",
+    "user",
+  ]);
   if (!sale) {
     return next(
       new ErrorHandler("The sale with id " + id + " does not exist", 404)
     );
   }
   res.status(200).json({ success: true, sale: sale });
+});
+
+//@desc     Get all sales
+//@route    GET /api/v1/sales
+//@access   public
+exports.getAllSales = catchAsyncErrors(async (req, res, next) => {
+  const sales = await Sale.find({}).populate([
+    "details.product",
+    "client",
+    "user",
+  ]);
+  if (!sales) {
+    return next(new ErrorHandler("Sales not found", 404));
+  }
+  res.status(200).json({ success: true, sales: sales });
 });
