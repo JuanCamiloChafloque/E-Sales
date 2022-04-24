@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UsersListComponent implements OnInit {
   public users: any;
+  public loggedInUser: any;
   public url;
   public error: String = '';
   public success: String = '';
@@ -18,16 +19,21 @@ export class UsersListComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {
     this.url = GLOBAL.url;
+    this.loggedInUser = this.userService.getLoggedInUser();
   }
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe({
-      next: (result) => {
-        this.users = result.users;
-      },
-      error: (err) => {
-        this.error = err.error.message;
-      },
-    });
+    if (this.loggedInUser && this.loggedInUser.role === 'admin') {
+      this.userService.getAllUsers().subscribe({
+        next: (result) => {
+          this.users = result.users;
+        },
+        error: (err) => {
+          this.error = err.error.message;
+        },
+      });
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
   }
 }

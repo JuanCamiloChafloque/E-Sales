@@ -57,7 +57,11 @@
             <span class="align-middle">Clients</span>
           </a>
         </li>
-        <li class="sidebar-item" routerLinkActive="sidebar-item active">
+        <li
+          class="sidebar-item"
+          routerLinkActive="sidebar-item active"
+          *ngIf="loggedInUser && loggedInUser.role === 'admin'"
+        >
           <a class="sidebar-link" [routerLink]="['/users']">
             <i class="align-middle mr-2 fas fa-user"></i>
             <span class="align-middle">Users</span>

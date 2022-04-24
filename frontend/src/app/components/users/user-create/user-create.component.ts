@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,14 +11,20 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserCreateComponent implements OnInit {
   public user: User;
+  public loggedInUser: any;
   public success: String = '';
   public error: String = '';
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.user = new User('', '', '', '', '', '');
+    this.loggedInUser = this.userService.getLoggedInUser();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.loggedInUser || this.loggedInUser.role !== 'admin') {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   onSubmit(userForm: NgForm) {
     this.error = '';

@@ -59,6 +59,11 @@ export class UserService {
     return this.http.get(this.url + 'api/v1/users/' + id);
   }
 
+  getLoggedInUser(): string | null {
+    let user = JSON.parse('' + localStorage.getItem('user'));
+    return user;
+  }
+
   getAllUsers(): Observable<any> {
     return this.http.get(this.url + 'api/v1/users');
   }

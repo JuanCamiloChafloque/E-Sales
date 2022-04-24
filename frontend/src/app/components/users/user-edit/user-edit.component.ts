@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GLOBAL } from 'src/app/services/GLOBAL';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,29 +11,39 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserEditComponent implements OnInit {
   public user!: any;
+  public loggedInUser: any;
   public id!: any;
   public success: String = '';
   public error: String = '';
   public password: String = '';
   public url;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.url = GLOBAL.url;
+    this.loggedInUser = this.userService.getLoggedInUser();
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe({
-      next: (params) => {
-        this.id = params['id'];
-        this.userService.getUserById(this.id).subscribe({
-          next: (result) => {
-            this.user = result.user;
-          },
-          error: (err) => {},
-        });
-      },
-      error: (err) => {},
-    });
+    if (this.loggedInUser && this.loggedInUser.role === 'admin') {
+      this.route.params.subscribe({
+        next: (params) => {
+          this.id = params['id'];
+          this.userService.getUserById(this.id).subscribe({
+            next: (result) => {
+              this.user = result.user;
+            },
+            error: (err) => {},
+          });
+        },
+        error: (err) => {},
+      });
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   onSubmit(userForm: NgForm) {
