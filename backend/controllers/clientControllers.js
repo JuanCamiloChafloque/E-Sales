@@ -21,6 +21,22 @@ exports.getAllClients = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({ success: true, clients: clients });
 });
 
+//@desc     Get a client by Id
+//@route    GET /api/v1/clients/:id
+//@access   public
+exports.getClientById = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const client = await Client.findById(id);
+
+  if (!client) {
+    return next(
+      new ErrorHandler("The client with id " + id + " does not exist", 404)
+    );
+  }
+
+  res.status(200).json({ success: true, client: client });
+});
+
 //@desc     Update a client
 //@route    PUT /api/v1/clients/:id
 //@access   public

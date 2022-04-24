@@ -5,11 +5,12 @@ const router = express.Router();
 const {
   registerClient,
   getAllClients,
+  getClientById,
   updateClient,
   deleteClient,
 } = require("../controllers/clientControllers");
 
 router.route("/").post(registerClient).get(getAllClients);
-router.route("/:id").put(updateClient).delete(deleteClient);
+router.route("/:id").get(getClientById).put(updateClient).delete(deleteClient);
 
 module.exports = router;

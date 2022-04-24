@@ -17,6 +17,10 @@ export class ClientService {
     return this.http.get(this.url + 'api/v1/clients');
   }
 
+  getClientById(id: String): Observable<any> {
+    return this.http.get(this.url + 'api/v1/clients/' + id);
+  }
+
   createClient(client: any): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post(
