@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GLOBAL } from './GLOBAL';
-import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',

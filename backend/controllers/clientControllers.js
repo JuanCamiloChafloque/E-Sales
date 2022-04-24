@@ -13,6 +13,14 @@ exports.registerClient = catchAsyncErrors(async (req, res, next) => {
   res.status(201).json({ success: true, client: newClient });
 });
 
+//@desc     Get all clients
+//@route    GET /api/v1/clients
+//@access   public
+exports.getAllClients = catchAsyncErrors(async (req, res, next) => {
+  const clients = await Client.find({});
+  res.status(200).json({ success: true, clients: clients });
+});
+
 //@desc     Update a client
 //@route    PUT /api/v1/clients/:id
 //@access   public

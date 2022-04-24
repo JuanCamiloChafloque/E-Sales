@@ -11,6 +11,8 @@ import { ProductsListComponent } from './components/products/products-list/produ
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProductCreateComponent } from './components/products/product-create/product-create.component';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
+import { ClientsListComponent } from './components/clients/clients-list/clients-list.component';
+import { ClientCreateComponent } from './components/clients/client-create/client-create.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { ProductEditComponent } from './components/products/product-edit/product
     SidebarComponent,
     ProductCreateComponent,
     ProductEditComponent,
+    ClientsListComponent,
+    ClientCreateComponent,
   ],
   imports: [
     BrowserModule,
