@@ -1,0 +1,44 @@
+<div class="wrapper">
+  <app-sidebar style="background: white !important"></app-sidebar>
+  <div class="main">
+    <main class="content">
+      <div class="container-fluid">
+        <div class="header">
+          <h1 class="header-title">E-Sales Sales List</h1>
+          <p class="header-subtitle">
+            List of the sales that clients have ordered
+          </p>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <a>Sales</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-xl-12">
+            <div
+              *ngIf="error"
+              class="alert alert-danger alert-dismissable"
+              role="alert"
+            >
+              <div class="alert-message">{{ error }}</div>
+            </div>
+            <div
+              *ngIf="success"
+              class="alert alert-info alert-dismissable"
+              role="alert"
+            >
+              <div class="alert-message">{{ success }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
