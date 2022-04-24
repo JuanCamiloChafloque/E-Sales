@@ -69,3 +69,46 @@ exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({ success: true, users: users });
 });
+
+//@desc     Get a user by Id
+//@route    GET /api/v1/users/:id
+//@access   public
+exports.getUserById = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+
+  if (!user) {
+    return next(
+      new ErrorHandler("The user with id " + id + " does not exist", 404)
+    );
+  }
+
+  res.status(200).json({ success: true, user: user });
+});
+
+//@desc     Update a user
+//@route    PUT /api/v1/users/:id
+//@access   public
+exports.updateUser = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+
+  const user = await User.findById(id);
+  if (!user) {
+    return next(
+      new ErrorHandler("The user with id " + id + " does not exist", 404)
+    );
+  }
+
+  user.name = req.body.name;
+  user.lastName = req.body.lastName;
+  user.email = req.body.email;
+  user.role = req.body.role;
+
+  if (req.body.password !== "") {
+    const encrPassword = await bcrypt.hash(req.body.password, 10);
+    user.password = encrPassword;
+  }
+
+  await user.save();
+  res.status(200).json({ success: true, message: "User updated successfully" });
+});

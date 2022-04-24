@@ -9,6 +9,7 @@ import { ProductCreateComponent } from './components/products/product-create/pro
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 import { ProductsListComponent } from './components/products/products-list/products-list.component';
 import { UserCreateComponent } from './components/users/user-create/user-create.component';
+import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 import { UsersListComponent } from './components/users/users-list/users-list.component';
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'client/edit/:id', component: ClientEditComponent },
   { path: 'users', component: UsersListComponent },
   { path: 'user/register', component: UserCreateComponent },
+  { path: 'user/edit/:id', component: UserEditComponent },
 ];
 
 @NgModule({

@@ -16,6 +16,7 @@ import { ClientCreateComponent } from './components/clients/client-create/client
 import { ClientEditComponent } from './components/clients/client-edit/client-edit.component';
 import { UsersListComponent } from './components/users/users-list/users-list.component';
 import { UserCreateComponent } from './components/users/user-create/user-create.component';
+import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UserCreateComponent } from './components/users/user-create/user-create.
     ClientEditComponent,
     UsersListComponent,
     UserCreateComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,

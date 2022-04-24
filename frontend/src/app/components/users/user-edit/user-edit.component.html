@@ -51,7 +51,7 @@
     <main class="content">
       <div class="container-fluid">
         <div class="header">
-          <h1 class="header-title">Registration of Users</h1>
+          <h1 class="header-title">Update User</h1>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
@@ -61,7 +61,7 @@
                 <a [routerLink]="['/users']">Users</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
-                <a>Register User</a>
+                <a>Update User</a>
               </li>
             </ol>
           </nav>
@@ -88,7 +88,9 @@
             <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title">Enter the new user information</h5>
+                  <h5 class="card-title">
+                    EEnter the user information to update
+                  </h5>
                 </div>
                 <div class="card-body">
                   <div class="row">
@@ -133,14 +135,14 @@
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
-                        <label><b>User Password</b></label>
+                        <label><b>New password</b></label>
                         <input
                           type="password"
                           class="form-control"
-                          #password="ngModel"
-                          placeholder="User password"
-                          name="password"
-                          [(ngModel)]="user.password"
+                          #pass="ngModel"
+                          placeholder="Enter user new password"
+                          name="pass"
+                          [(ngModel)]="password"
                         />
                       </div>
                     </div>
@@ -163,7 +165,7 @@
                 </div>
                 <div class="card-footer">
                   <button class="btn btn-success" type="submit">
-                    Register User
+                    Update User
                   </button>
                 </div>
               </div>

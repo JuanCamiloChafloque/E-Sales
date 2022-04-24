@@ -40,6 +40,25 @@ export class UserService {
     );
   }
 
+  updateUserById(user: any, id: String): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.put(
+      this.url + 'api/v1/users/' + id,
+      {
+        name: user.name,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role,
+        password: user.password,
+      },
+      { headers: headers }
+    );
+  }
+
+  getUserById(id: String): Observable<any> {
+    return this.http.get(this.url + 'api/v1/users/' + id);
+  }
+
   getAllUsers(): Observable<any> {
     return this.http.get(this.url + 'api/v1/users');
   }
