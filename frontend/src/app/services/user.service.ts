@@ -24,4 +24,23 @@ export class UserService {
       { headers: headers }
     );
   }
+
+  register(user: any): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(
+      this.url + 'api/v1/users/register',
+      {
+        name: user.name,
+        lastName: user.lastName,
+        email: user.email,
+        password: user.password,
+        role: user.role,
+      },
+      { headers: headers }
+    );
+  }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get(this.url + 'api/v1/users');
+  }
 }

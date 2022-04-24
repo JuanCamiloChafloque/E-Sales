@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProductCreateComponent } from './components/products/product-create/product-create.component';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 import { ProductsListComponent } from './components/products/products-list/products-list.component';
+import { UsersListComponent } from './components/users/users-list/users-list.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'clients', component: ClientsListComponent },
   { path: 'client/register', component: ClientCreateComponent },
   { path: 'client/edit/:id', component: ClientEditComponent },
+  { path: 'users', component: UsersListComponent },
 ];
 
 @NgModule({

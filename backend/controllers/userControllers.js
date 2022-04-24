@@ -57,3 +57,15 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
 
   sendToken(user, 200, res);
 });
+
+//@desc     Get all users
+//@route    GET /api/v1/users
+//@access   public
+exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+  if (!users) {
+    return next(new ErrorHandler("Users not found", 404));
+  }
+
+  res.status(200).json({ success: true, users: users });
+});
