@@ -31,7 +31,7 @@ exports.register = catchAsyncErrors(async (req, res, next) => {
   };
 
   const newUser = await User.create(user);
-  sendToken(user, 201, res);
+  res.status(201).json({ success: true, user: newUser });
 });
 
 //@desc     Login a user
