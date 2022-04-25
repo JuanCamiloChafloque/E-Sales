@@ -19,6 +19,8 @@ import { UserCreateComponent } from './components/users/user-create/user-create.
 import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 import { SalesListComponent } from './components/sales/sales-list/sales-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SaleCreateComponent } from './components/sales/sale-create/sale-create.component';
+import { SaleDetailComponent } from './components/sales/sale-detail/sale-detail.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     UserEditComponent,
     SalesListComponent,
     NavbarComponent,
+    SaleCreateComponent,
+    SaleDetailComponent,
   ],
   imports: [
     BrowserModule,

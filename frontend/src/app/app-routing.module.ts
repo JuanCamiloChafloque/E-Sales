@@ -8,6 +8,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ProductCreateComponent } from './components/products/product-create/product-create.component';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 import { ProductsListComponent } from './components/products/products-list/products-list.component';
+import { SaleCreateComponent } from './components/sales/sale-create/sale-create.component';
+import { SaleDetailComponent } from './components/sales/sale-detail/sale-detail.component';
 import { SalesListComponent } from './components/sales/sales-list/sales-list.component';
 import { UserCreateComponent } from './components/users/user-create/user-create.component';
 import { UserEditComponent } from './components/users/user-edit/user-edit.component';
@@ -26,6 +28,8 @@ const routes: Routes = [
   { path: 'user/register', component: UserCreateComponent },
   { path: 'user/edit/:id', component: UserEditComponent },
   { path: 'sales', component: SalesListComponent },
+  { path: 'sale/register', component: SaleCreateComponent },
+  { path: 'sale/:id', component: SaleDetailComponent },
 ];
 
 @NgModule({
