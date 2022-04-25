@@ -58,7 +58,32 @@ export class SaleCreateComponent implements OnInit {
     });
   }
 
-  onSubmit(saleForm: NgForm) {}
+  onSubmit(saleForm: NgForm) {
+    if (saleForm.valid) {
+      const details = this.cart.map((item) => {
+        return {
+          product: item.id,
+          quantity: Number(item.quantity),
+        };
+      });
+
+      const sale = {
+        client: this.sale.client,
+        user: this.loggedInUser._id,
+        details: details,
+      };
+
+      this.saleService.createSale(sale).subscribe({
+        next: () => {
+          this.success = 'Sale registered successfully';
+          this.router.navigate(['/sales']);
+        },
+        error: (err) => {
+          this.error = err.error.message;
+        },
+      });
+    }
+  }
 
   saveDetail(detailsForm: NgForm) {
     this.error = '';
@@ -75,7 +100,6 @@ export class SaleCreateComponent implements OnInit {
 
         this.detail = new Detail('', '', 0);
         this.stock = 0;
-        console.log(this.cart);
       } else {
         this.error = 'There is not enough stock for that product';
       }
