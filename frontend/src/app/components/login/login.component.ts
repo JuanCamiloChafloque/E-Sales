@@ -11,13 +11,19 @@ import { User } from '../../models/User';
 })
 export class LoginComponent implements OnInit {
   public user: User;
+  public loggedInUser: any;
   public errorMessage: String = '';
 
   constructor(private userService: UserService, private router: Router) {
     this.user = new User('', '', '', '', '', '');
+    this.loggedInUser = this.userService.getLoggedInUser();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.loggedInUser) {
+      this.router.navigate(['/sales']);
+    }
+  }
 
   login(loginForm: NgForm) {
     if (loginForm.valid) {
@@ -25,7 +31,7 @@ export class LoginComponent implements OnInit {
       this.userService.login(this.user.email, this.user.password).subscribe({
         next: (result) => {
           localStorage.setItem('user', JSON.stringify(result.user));
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['sales']);
         },
         error: (err) => {
           this.errorMessage = err.error.message;
